@@ -2,7 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
+<item
+    android:id="@+id/searchview"
+    android:title="Search"
+    android:icon="@drawable/ic_search_black_24dp"
+    app:actionViewClass="androidx.appcompat.widget.SearchView"
+    app:showAsAction="ifRoom|collapseActionView"/>
 
     <item android:id="@+id/item1"
         android:title="About Us"
@@ -22,4 +27,20 @@
         android:title="My Location"
         ></item>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv1"
+        android:divider="#ad5"
+        android:dividerHeight="2dp"
+        android:layout_below="@+id/searchView"/>
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:queryHint="Search Here"
+        android:iconifiedByDefault="false"
+        android:layout_alignParentTop="true"
+        />
 </menu>

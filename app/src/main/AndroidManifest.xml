@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mylocation"></activity>
+        <activity android:name=".sameer"></activity>
+        <activity android:name=".univer" />
+        <activity android:name=".fida" />
+        <activity android:name=".health" />
+        <activity android:name=".vand" />
+        <activity android:name=".sahourpharm" />
+        <activity android:name=".lahempharm" />
+        <activity android:name=".jalapharm" />
+        <activity android:name=".mylocation" />
         <activity android:name=".share" />
         <activity android:name=".settings" />
         <activity android:name=".act1" />
@@ -22,10 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme">
-
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

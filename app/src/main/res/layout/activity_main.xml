@@ -5,45 +5,189 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="?attr/actionBarSize"
-    android:background="@drawable/gradient">
+    android:background="@drawable/dat"
+    android:scrollbars="vertical">
+
+
 
     <RelativeLayout
         android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
 
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <SearchView
-            android:layout_width="17dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="392dp"
-            android:layout_marginLeft="392dp"
-            android:layout_marginBottom="652dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/relative_layout"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            tools:ignore="NotSibling" />
+
+        <ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_below="@+id/v_flipper">
 
         <ViewFlipper
             android:id="@+id/v_flipper"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="4.5dp"
+            android:layout_marginTop="12dp" />
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="4.5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:background="@drawable/gradient"
+            android:textSize="18dp"
+            android:text="Vanda Pharmacy"
+            android:layout_below="@id/v_flipper"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/gradient"
+            android:text="Health House Pharmacy"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textSize="18dp"
+            android:layout_marginLeft="4.5dp"
+            android:layout_below="@id/button1"/>
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:layout_marginLeft="4.5dp"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:background="@drawable/gradient"
+            android:text="Fida Pharmacy"
+            android:layout_below="@id/button2"/>
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginLeft="4.5dp"
+            android:background="@drawable/gradient"
+            android:textSize="18dp"
+            android:text=" AlJamea Pharmacy"
+            android:layout_below="@id/button3"/>
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginLeft="4.5dp"
+            android:background="@drawable/gradient"
+            android:textSize="18dp"
+            android:text=" Pharmacies"
+            android:layout_below="@id/button4"/>
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginLeft="4.5dp"
+            android:background="@drawable/gradient"
+            android:textSize="18dp"
+            android:text="Beit Jala's Pharmacies"
+            android:layout_below="@id/button5"/>
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:layout_below="@id/button6"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4.5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/gradient"
+            android:text="Beit Jala's Pharmacies"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18dp" />
+
+        <Button
+        android:id="@+id/button8"
+        android:layout_width="400dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:layout_marginLeft="4.5dp"
+        android:background="@drawable/gradient"
+        android:textSize="18dp"
+        android:text="Beit Jala's Pharmacies"
+        android:layout_below="@id/button7"/>
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="400dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginLeft="4.5dp"
+
+            android:background="@drawable/gradient"
+            android:textSize="18dp"
+            android:text="Beit Jala's Pharmacies"
+            android:layout_below="@id/button8"/>
+     <!--   <Button
+            android:id="@+id/button10"
+            android:layout_width="380dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/gradient"
+            android:textSize="18dp"
+            android:text="Beit Jala's Pharmacies"
+            android:layout_below="@id/button9"/>
+        --> <ListView
+            android:id="@+id/lv1"
             android:layout_width="match_parent"
-            android:layout_height="250dp" />
+            android:layout_height="match_parent"
+            android:layout_below="@+id/searchView"
+            android:divider="#ad5">
+
+        </ListView>
 
 
+
+
+</LinearLayout>
+        </ScrollView>
     </RelativeLayout>
-
-
-
-
-
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
@@ -69,8 +213,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
