@@ -12,5 +12,29 @@
         <item> Bethlehem</item>
         <item> Beit Sahour</item>
     </string-array>
+    <string-array name="pharmacies">
+        <item>pharmacy</item>
+        <item>pharm</item>
+        <item>acy</item>
+        <item>pharmacy</item>
+        <item>cy</item>
+        <item>pharmacy</item>
+        <item>pharmacy</item>
+        <item>pharmacy</item>
+        <item>pharmacy</item>
+        <item>pharmacy</item>
 
+    </string-array>
+    <string-array name="available">
+        <item>Open</item>
+        <item>Closed</item>
+        <item>Closed</item>
+        <item>Open</item>
+        <item>Open</item>
+        <item>Open</item>
+        <item>Open</item>
+        <item>Open</item>
+        <item>Closed</item>
+        <item>Closed</item>
+    </string-array>
 </resources>
