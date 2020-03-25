@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,8 +24,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+    RecyclerView recyclerView;
+    String s1[], s2[];
+    int images[]= {R.drawable.ww,R.drawable.rrr, R.drawable.rr,R.drawable.t
+            ,R.drawable.download,R.drawable.s,R.drawable.m,R.drawable.tt,R.drawable.q,
+            R.drawable.w};
 
     /*ViewFlipper v_flipper;*/
 ListView listView;
@@ -33,21 +40,17 @@ SearchView searchView;
 
 ArrayList<AdapterView> madapter;
 
-   public class nee extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
-       @Override
-       public boolean onQueryTextSubmit(String query) {
-           return false;
-       }
 
-       @Override
-       public boolean onQueryTextChange(String newText) {
-           return false;
-       }
-   }
+
     public boolean onCreateOptionsMenu(Menu menu) {
 
       getMenuInflater().inflate(R.menu.menu, menu);
+
+      MenuItem menuItem = menu.findItem(R.id.searchView);
+
+return true;
+
      /********fffffffffffffffffff***** MenuItem item = menu.findItem(R.id.searchview);
         androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) item.getActionView();
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
@@ -72,12 +75,20 @@ ArrayList<AdapterView> madapter;
                 return true;
             }
         });*/
-        return true;
         }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recyclerview);
+
+        s1 =getResources().getStringArray(R.array.programming_languages);
+        s2 =getResources().getStringArray(R.array.Description);
+
+        MyAdapter myAdapter =new MyAdapter( this, s1, s2, images);
+        recyclerView.setAdapter(myAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
      /*   ListView listView = findViewById(R.id.lv1);
@@ -251,14 +262,15 @@ ArrayList<AdapterView> madapter;
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    public boolean onQueryTextSubmit(String query) {
+        return false;
     }
 
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
+}
 

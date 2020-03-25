@@ -12,7 +12,7 @@
         <item> Bethlehem</item>
         <item> Beit Sahour</item>
     </string-array>
-    <string-array name="pharmacies">
+    <string-array name="programming_languages">
         <item>pharmacy</item>
         <item>pharm</item>
         <item>acy</item>
@@ -25,7 +25,7 @@
         <item>pharmacy</item>
 
     </string-array>
-    <string-array name="available">
+    <string-array name="Description">
         <item>Open</item>
         <item>Closed</item>
         <item>Closed</item>
