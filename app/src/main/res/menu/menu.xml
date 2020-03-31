@@ -6,8 +6,9 @@
     android:id="@+id/searchview"
     android:title="Search"
     android:icon="@drawable/ic_search_black_24dp"
-    app:actionViewClass="androidx.appcompat.widget.SearchView"
+    app:actionViewClass="android.widget.SearchView"
     app:showAsAction="ifRoom|collapseActionView"
+
     />
 
     <item android:id="@+id/item1"
@@ -28,13 +29,7 @@
         android:title="My Location"
         ></item>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lv1"
-        android:divider="#ad5"
-        android:dividerHeight="2dp"
-        android:layout_below="@+id/searchView"/>
+
 
     <SearchView
         android:id="@+id/searchView"

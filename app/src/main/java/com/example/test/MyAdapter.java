@@ -2,6 +2,7 @@ package com.example.test;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.shapes.OvalShape;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-    private List<String> names;
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> implements Filterable{
     String data1[], data2[];
     int images[];
     Context context;
+    private List<MyAdapter>examplelist;
+    private List<MyAdapter>examplelistfull;
+
     public MyAdapter(Context ct, String s1[], String s2[], int img[]){
         context =ct;
         data1= s1;
@@ -29,12 +32,31 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         images= img;
     }
 
+    public int[] getImageresource()
+    {
+        return images;
+    }
+    public String[] getData1()
+    {
+        return data1;
+    }
+    public String[] getData2()
+    {
+        return data2;
+    }
+
+
+
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater =LayoutInflater.from(context);
         View view= inflater.inflate(R.layout.my_row,parent,false);
 
         return new MyViewHolder(view);
+    }
+    MyAdapter(List<MyAdapter>examplelist)   {
+        this.examplelist= examplelist;
+        examplelistfull= new ArrayList<>(examplelist);
     }
     @NonNull
     @Override
@@ -62,9 +84,40 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return images.length;
+        return data1.length;
     }
 
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+
+    }
+private Filter exampleFilter = new Filter() {
+    @Override
+    protected FilterResults performFiltering(CharSequence constraint) {
+        List<MyAdapter>filteredlist = new ArrayList<>();
+        if (constraint == null|| constraint.length()==0){
+            filteredlist.addAll((examplelistfull));
+        }else {
+            String filteredPattern = constraint.toString().toLowerCase().trim();
+            for(MyAdapter item :examplelistfull){
+                if (item.getData1().toString().toLowerCase().contains(filteredPattern)){
+                    filteredlist.add(item);
+                }
+            }
+        }
+        FilterResults results = new FilterResults();
+        results.values= filteredlist;
+        return results;
+    }
+
+    @Override
+    protected void publishResults(CharSequence constraint, FilterResults results) {
+examplelist.clear();
+examplelist.addAll((List)results.values);
+notifyDataSetChanged();
+    }
+};
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView myText1, myText2;
@@ -79,9 +132,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             mainlayout=itemView.findViewById(R.id.mainLayout);
         }
     }
-    public void updatelist(List<String>newlist){
-        names = new ArrayList<>();
-        names.addAll(newlist);
-        notifyDataSetChanged();
+
     }
-}
+
+
