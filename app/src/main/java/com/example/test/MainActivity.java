@@ -37,13 +37,13 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
 private List<String> names = new ArrayList<>();
 /*ViewFlipper v_flipper;*/
     SearchView searchView;
-    ArrayAdapter<String> adapter;
+    ArrayAdapter adapter;
+    private List<MyAdapter>examplelist;
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.menu, menu);
       MenuItem menuItem = menu.findItem(R.id.searchview);
-      names= Arrays.asList(getResources().getStringArray(R.array.programming_languages));
       searchView= (SearchView) menuItem.getActionView();
       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
           @Override
@@ -53,35 +53,14 @@ private List<String> names = new ArrayList<>();
 
           @Override
           public boolean onQueryTextChange(String newText) {
+              adapter.getFilter().filter(newText);
               return false;
+
           }
       });
 return true;
 
-     /********fffffffffffffffffff***** MenuItem item = menu.findItem(R.id.searchview);
-        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) item.getActionView();
-        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
 
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                newText= newText.toLowerCase();
-                ArrayList<String> newList= new ArrayList<>();
-                for(String sss : s1)
-                {
-                    if (sss.toLowerCase().contains(newText)){
-                        newList.add(sss);
-                    }
-
-                }
-
-                return true;
-            }
-        });*/
         }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,15 +68,12 @@ return true;
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerview);
-
         s1 =getResources().getStringArray(R.array.programming_languages);
         s2 =getResources().getStringArray(R.array.Description);
 
         MyAdapter myAdapter =new MyAdapter( this, s1, s2, images);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
 
      /*   ListView listView = findViewById(R.id.lv1);
         searchView = (SearchView) findViewById(R.id.searchView);
@@ -280,7 +256,9 @@ return true;
     public boolean onQueryTextChange(String newText) {
         return true;
     }
-
+private void fillexamplelist(){
+        examplelist= new ArrayList<>();
+    }
     }
 
 

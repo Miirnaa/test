@@ -6,6 +6,7 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
     Context context;
     private List<MyAdapter>examplelist;
     private List<MyAdapter>examplelistfull;
+    ArrayAdapter<String> adapter;
 
     public MyAdapter(Context ct, String s1[], String s2[], int img[]){
         context =ct;
