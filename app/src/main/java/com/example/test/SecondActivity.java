@@ -17,13 +17,10 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-
         mainImageView = findViewById(R.id.myImageView);
         title = findViewById(R.id.title);
         Description = findViewById(R.id.Description);
         getData();
-
-
     }
 
     private void getData(){

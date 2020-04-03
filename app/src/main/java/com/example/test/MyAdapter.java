@@ -25,7 +25,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
     Context context;
     private List<MyAdapter>examplelist;
     private List<MyAdapter>examplelistfull;
-    ArrayAdapter<String> adapter;
+
 
     public MyAdapter(Context ct, String s1[], String s2[], int img[]){
         context =ct;
@@ -34,15 +34,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         images= img;
     }
 
+    public MyAdapter(String name, int id) {
+    }
+
     public int[] getImageresource()
+
     {
         return images;
     }
     public String[] getData1()
+
     {
         return data1;
     }
     public String[] getData2()
+
     {
         return data2;
     }
@@ -56,7 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
 
         return new MyViewHolder(view);
     }
-    MyAdapter(List<MyAdapter>examplelist)   {
+    MyAdapter(MainActivity activity, List<MyAdapter> examplelist)   {
         this.examplelist= examplelist;
         examplelistfull= new ArrayList<>(examplelist);
     }

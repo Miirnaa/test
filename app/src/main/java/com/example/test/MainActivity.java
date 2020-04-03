@@ -1,5 +1,6 @@
 package com.example.test;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,8 +9,16 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.SearchView;
+import android.widget.Spinner;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +31,10 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,31 +42,31 @@ import java.util.List;
 import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+    private RequestQueue mrequestque;
     RecyclerView recyclerView;
     String s1[], s2[];
     int images[]= {R.drawable.ww,R.drawable.rrr, R.drawable.rr,R.drawable.t
-            ,R.drawable.download,R.drawable.s,R.drawable.m,R.drawable.tt,R.drawable.q,
-            R.drawable.w};
-private List<String> names = new ArrayList<>();
+            ,R.drawable.tt,R.drawable.s,R.drawable.tt,R.drawable.tt,R.drawable.q, R.drawable.w};
 /*ViewFlipper v_flipper;*/
     SearchView searchView;
-    ArrayAdapter adapter;
-    private List<MyAdapter>examplelist;
 
+    private MyAdapter mExampleadapter;
+    private ArrayList<MyAdapter> mexamplelist;
 
     public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.menu, menu);
-      MenuItem menuItem = menu.findItem(R.id.searchview);
-      searchView= (SearchView) menuItem.getActionView();
-      searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+      MenuItem menuItem = menu.findItem(R.id.searchviewmenu);
+
+        searchView= (SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
           @Override
-          public boolean onQueryTextSubmit(String query) {
+          public boolean onQueryTextSubmit(String query)
+          {
               return false;
           }
 
           @Override
           public boolean onQueryTextChange(String newText) {
-              adapter.getFilter().filter(newText);
               return false;
 
           }
@@ -66,103 +79,24 @@ return true;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         recyclerView = findViewById(R.id.recyclerview);
         s1 =getResources().getStringArray(R.array.programming_languages);
         s2 =getResources().getStringArray(R.array.Description);
-
-        MyAdapter myAdapter =new MyAdapter( this, s1, s2, images);
+        MyAdapter myAdapter = new MyAdapter(this, s1, s2, images);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-     /*   ListView listView = findViewById(R.id.lv1);
-        searchView = (SearchView) findViewById(R.id.searchView);
-        list = new ArrayList<>();
-        list.add("Medicines");
-        list.add("Hair & Cream treatments");
-        list.add("Health Care");
-        list.add("Ladies Perfume");
-        list.add("Men's Perfume");
-        list.add("Mom & Baby");
-        listView.setAdapter(adapter);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);*/
-      /* button = (Button) findViewById(R.id.button1);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity2();
-            }
-        });
-        button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity2();
-            }
-        });
-        button3 = (Button) findViewById(R.id.button3);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity2();
-            }
-        });
 
-        button4 = (Button) findViewById(R.id.button4);
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity3();
-            }
-        });
+mrequestque = Volley.newRequestQueue(this);
+parseJSON();
 
-        button3 = (Button) findViewById(R.id.button3);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity4();
-            }
-        });
-        button5 = (Button) findViewById(R.id.button5);
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity5();
-            }
-        });
-        button6 = (Button) findViewById(R.id.button6);
-        button6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity6();
-            }
-        });
-        button7 = (Button) findViewById(R.id.button7);
-        button7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity7();
-            }
-        });
-        button8 = (Button) findViewById(R.id.button8);
-        button8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity8();
-            }
-        });
-        button9 = (Button) findViewById(R.id.button9);
-        button9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openActivity9();
-            }
-        });
-*/
+
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
@@ -177,34 +111,6 @@ return true;
     }*/
 
 
-    /*public void openActivity2(){
-     s   Intent intent = new Intent(this, jalapharm.class);
-        startActivity(intent);
-    }
-    public void openActivity3(){
-        Intent intent = new Intent(this, lahempharm.class);
-        startActivity(intent);
-    }
-    public void openActivity4(){
-        Intent intent = new Intent(this, sahourpharm.class);
-        startActivity(intent);
-    }
-    public void openActivity5(){
-        Intent intent = new Intent(this, fida.class);
-        startActivity(intent);
-    } public void openActivity6(){
-        Intent intent = new Intent(this, vand.class);
-        startActivity(intent);
-    } public void openActivity7(){
-        Intent intent = new Intent(this, univer.class);
-        startActivity(intent);
-    } public void openActivity8(){
-        Intent intent = new Intent(this, health.class);
-        startActivity(intent);
-    } public void openActivity9(){
-        Intent intent = new Intent(this, sameer.class);
-        startActivity(intent);
-    }
 
    /* public void flipperImages(int image) {
 
@@ -217,6 +123,37 @@ return true;
         v_flipper.setOutAnimation(this, android.R.anim.slide_out_right);
     }*/
 
+    }
+    private void parseJSON(){
+        String url = "http://www.palpharmacy.com/index.php/getPharmacies";
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+            @Override
+
+            public void onResponse(JSONObject response) {
+                try {
+
+                    JSONArray jsonArray = response.getJSONArray("x");
+                    for (int i = 0; i< jsonArray.length();i++){
+                        JSONObject hit= jsonArray.getJSONObject(i);
+                        String name = hit.getString("name_ar");
+                        int id = hit.getInt("user_id");
+                        mexamplelist.add(new MyAdapter(name,id));
+                    }
+                    mExampleadapter= new MyAdapter(MainActivity.this,mexamplelist);
+                    recyclerView.setAdapter(mExampleadapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mrequestque.add(request);
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -243,6 +180,8 @@ return true;
                 Intent intent = new Intent(MainActivity.this, mylocation.class);
                 startActivity(intent);
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -256,9 +195,7 @@ return true;
     public boolean onQueryTextChange(String newText) {
         return true;
     }
-private void fillexamplelist(){
-        examplelist= new ArrayList<>();
-    }
+
     }
 
 

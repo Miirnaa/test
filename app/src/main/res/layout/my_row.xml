@@ -19,9 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
-        app:cardCornerRadius="15dp"
-
-        >
+        app:cardCornerRadius="15dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -38,7 +36,7 @@
                 android:layout_marginTop="30dp"
                 app:layout_constraintEnd_toStartOf="@+id/myTextext1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/download"
+                app:srcCompat="@drawable/dep"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteY="-56dp" />
 
@@ -63,6 +61,7 @@
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/myTextext1"
                 app:layout_constraintTop_toBottomOf="@+id/myTextext1" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

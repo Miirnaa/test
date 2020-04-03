@@ -3,10 +3,10 @@
 <item
 android:drawable="@color/white" />
    <item>
-       <bitmap android:src="@drawable/down2"
+
+       <bitmap android:src="@drawable/acamol1"
            android:gravity="center">
-
        </bitmap>
-   </item>
 
+   </item>
 </layer-list>

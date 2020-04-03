@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".act1"
-    android:background="@drawable/dat">
+    android:background="@drawable/dep">
     <TextView
         android:text="We are here to help you find the nearest and  opened
 Pharmacies, to save your time so you just have to put your Location
